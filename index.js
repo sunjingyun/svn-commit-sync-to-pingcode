@@ -295,13 +295,13 @@ async function doProcess(repositoryName, cmdPath, rev) {
 (async () => {
     const argv = process.argv && minimist(process.argv.slice(2));
 
-    if (argv && argv.r) {
+    if (argv && argv.r && argv.p) {
         const rev = argv.r;
 
-        const cmdPaths = process.cwd().split("/");
+        const cmdPaths = argv.p.split("/");
 
         if (cmdPaths[cmdPaths.length - 1] !== "hooks" || cmdPaths.length < 2) {
-            throw new Error("Please use the command under the folder 'hooks'");
+            throw new Error("Please set the path of hooks folder");
         }
         else {
             const repositoryName = cmdPaths[cmdPaths.length - 2];
@@ -317,7 +317,7 @@ async function doProcess(repositoryName, cmdPath, rev) {
         }
     }
     else {
-        throw new Error("Missing parameters: rev");
+        throw new Error("Missing parameters: -r(rev) and -p(the path of hooks folder)");
     }
 })()
     .then(result => {
