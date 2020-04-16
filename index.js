@@ -216,7 +216,7 @@ function fetchCommitFromLocal(context, cmdPath, rev) {
     const message = cp.execSync(`svnlook log ${cmdPath} -r ${rev}`).toString().trim();
     const identifiers = getIdentifierFromMessage(message || "");
     const author = cp.execSync(`svnlook author ${cmdPath} -r ${rev}`).toString().trim();
-    const createAt = moment(cp.execSync(`svnlook date ${cmdPath} -r ${rev}`).toString().trim()).unix();
+    const createAt = new Date(cp.execSync(`svnlook date ${cmdPath} -r ${rev}`).toString().trim())
     const changesOutput = cp.execSync(`svnlook changed ${cmdPath} -r ${rev}`).toString().trim();
     const changes = getChangedFiles(changesOutput);
 
@@ -224,7 +224,7 @@ function fetchCommitFromLocal(context, cmdPath, rev) {
         "sha": sha,
         "message": message,
         "committer_name": author,
-        "committed_at": createAt,
+        "committed_at": moment(createAt).unix(),
         "tree_id": context.tree_id,
         "files_added": [],
         "files_removed": [],
