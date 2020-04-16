@@ -5,7 +5,7 @@
 
 ### 效果展示:
 
-![commit关联Worktile工作项.png](http://github.com/sunjingyun/svn-commit-sync-to-worktile/raw/master/images/commit-related-worktile.png)
+![commit关联Worktile工作项.png](https://github.com/sunjingyun/svn-commit-sync-to-worktile/blob/master/images/commit-related-worktile.png)
 
 ### 配置svn的服务端
 #### 1. 在服务器中安装`nodejs`环境
