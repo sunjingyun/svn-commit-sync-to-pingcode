@@ -9,7 +9,7 @@ const repeatstring = require("repeat-string");
 const cp = require("child_process");
 const pkg = require("./package.json");
 
-const baseUri = "https://open-beta.worktile.com";
+const baseUri = pkg.config.base_url;
 const localStorage = path.join(__dirname, ".local_storage");
 
 function getContextFromLocalStorage() {
@@ -232,7 +232,7 @@ function fetchCommitFromLocal(context, cmdPath, rev) {
         "work_item_identifiers": identifiers
     }
 }
-function sendCommitToWorktile(context, repositoryName, localCommit) {
+async function sendCommitToWorktile(context, repositoryName, localCommit) {
     const repositoryId = context.repositories[repositoryName];
     const branchId = context.branches[repositoryName];
 
@@ -274,7 +274,7 @@ async function process(repositoryName, cmdPath, rev) {
 }
 
 (async () => {
-    const argv = minimist(process.argv.slice(2));
+    const argv = process.argv && minimist(process.argv.slice(2));
 
     if (argv && argv._ && argv._[0]) {
         const rev = argv._[0];

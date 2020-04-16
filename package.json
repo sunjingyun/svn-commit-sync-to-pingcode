@@ -17,8 +17,9 @@
     "request": "^2.88.2"
   },
   "config": {
-    "client_id": "giGgmopeqbsH",
-    "client_secret": "tEviOJpkzanaUQgdQnTZPEka",
+    "base_url": "https://open.worktile.com",
+    "client_id": "your-client-id",
+    "client_secret": "your-client-secret",
     "product_name": "Subversion"
   }
 }
