@@ -33,7 +33,7 @@ function getContextFromLocalStorage() {
 function setContextToLocalStorage(context) {
     try {
         const input = JSON.stringify(context);
-        fs.writeFileSync(input);
+        fs.writeFileSync(localStorage, input);
         return true;
     }
     catch (error) {
