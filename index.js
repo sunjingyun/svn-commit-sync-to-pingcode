@@ -232,6 +232,24 @@ function fetchCommitFromLocal(context, repositoryName, cmdPath, rev) {
         "work_item_identifiers": identifiers
     }
 }
+async function getUserId(context, userName) {
+    const users = await httpGet(`${baseUri}/v1/scm/products/${context.productId}/users?name=${userName}`, context.accessToken);
+
+    if (users && users.total && users.total > 0 && users.values) {
+        const user = users.values[0];
+        return user.id;
+    }
+    else {
+        const user = await httpPost(`${baseUri}/v1/scm/products/${context.productId}/users`,
+            {
+                "name": userName,
+                "display_name": userName
+            },
+            context.accessToken
+        );
+        return user.id
+    }
+}
 async function sendCommitToWorktile(context, repositoryName, localCommit) {
     const repositoryId = context.repositories[repositoryName];
     const branchId = context.branches[repositoryName];
@@ -264,12 +282,13 @@ async function doProcess(repositoryName, cmdPath, rev) {
 
     context.productId = await getProductId(context);
     context.repositories[repositoryName] = await getRepositoryId(context, repositoryName);
-    context.branches[repositoryName] = await getDefaultBranchId(context, repositoryName, "-");
+    context.branches[repositoryName] = await getDefaultBranchId(context, repositoryName, "master");
     context.trees[repositoryName] = context.trees[repositoryName] || randomstring.generate({ length: 40, charset: "hex" })
 
     setContextToLocalStorage(context);
 
     commit = fetchCommitFromLocal(context, repositoryName, cmdPath, rev);
+    const userId = await getUserId(context, commit.committer_name);
     await sendCommitToWorktile(context, repositoryName, commit);
 }
 
