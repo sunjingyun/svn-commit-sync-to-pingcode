@@ -13,8 +13,8 @@ const baseUri = pkg.config.base_url;
 const localStorage = path.join(__dirname, ".local_storage");
 
 function getContextFromLocalStorage() {
-    const output = fs.readFileSync(localStorage);
     try {
+        const output = fs.readFileSync(localStorage);
         return JSON.parse(output);
     }
     catch (error) {
