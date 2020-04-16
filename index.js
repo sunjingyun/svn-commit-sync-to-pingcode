@@ -55,7 +55,7 @@ async function httpGet(uri, accessToken) {
                 }
                 else {
                     try {
-                        const body = JSON.parse(response.body);
+                        const body = typeof response.body === "object" ? response.body : JSON.parse(response.body);
 
                         if (body && body.code && body.message) {
                             reject(new Error(body.message));
@@ -87,7 +87,7 @@ async function httpPost(uri, body, accessToken) {
                 }
                 else {
                     try {
-                        const body = JSON.parse(response.body);
+                        const body = typeof response.body === "object" ? response.body : JSON.parse(response.body);
 
                         if (body && body.code && body.message) {
                             reject(new Error(body.message));
