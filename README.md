@@ -1,6 +1,7 @@
 ### 测试环境:
 > svn server: version 1.9.7 (r1800392) compiled Mar 28 2018, 08:49:13 on x86_64-pc-linux-gnu
-svn client: version 1.13.0 (r1867053) compiled Apr 7 2020, 16:42:44 on x86_64-apple-darwin18.7.0
+
+> svn client: version 1.13.0 (r1867053) compiled Apr 7 2020, 16:42:44 on x86_64-apple-darwin18.7.0
 
 ### 效果展示:
 
@@ -55,7 +56,7 @@ node /opt/worktile/svn-commit-sync-to-worktile -r $2 -p $(cd "$(dirname "$0")" &
 ```
 
 ### 客户端提交代码
-像刚才的代码仓库提交代码，commit message中提及Worktile的工作项即可，例如：
+向代码仓库提交代码，commit message中提及Worktile的工作项即可，例如：
 ```
 svn commit -m 'feat(scope): #CD-7 some comment'
 ```
