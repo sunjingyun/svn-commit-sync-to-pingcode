@@ -211,8 +211,8 @@ function getChangedFiles(str) {
 
     return files;
 }
-function fetchCommitFromLocal(context, cmdPath, rev) {
-    const sha = rev + repeatstring(" ", 10 - rev) + randomstring.generate({ length: 30, charset: "hex" });
+function fetchCommitFromLocal(context, repositoryName, cmdPath, rev) {
+    const sha = rev + repeatstring("a", 10 - rev.length); + randomstring.generate({ length: 30, charset: "hex" });
     const message = cp.execSync(`svnlook log ${cmdPath} -r ${rev}`).toString().trim();
     const identifiers = getIdentifierFromMessage(message || "");
     const author = cp.execSync(`svnlook author ${cmdPath} -r ${rev}`).toString().trim();
@@ -225,7 +225,7 @@ function fetchCommitFromLocal(context, cmdPath, rev) {
         "message": message,
         "committer_name": author,
         "committed_at": moment(createAt).unix(),
-        "tree_id": context.tree_id,
+        "tree_id": context.trees[repositoryName],
         "files_added": [],
         "files_removed": [],
         "files_modified": changes,
@@ -269,7 +269,7 @@ async function doProcess(repositoryName, cmdPath, rev) {
 
     setContextToLocalStorage(context);
 
-    commit = fetchCommitFromLocal(context, cmdPath, rev);
+    commit = fetchCommitFromLocal(context, repositoryName, cmdPath, rev);
     await sendCommitToWorktile(context, repositoryName, commit);
 }
 
