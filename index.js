@@ -252,7 +252,7 @@ async function sendCommitToWorktile(context, repositoryName, localCommit) {
     return true;
 }
 
-async function process(repositoryName, cmdPath, rev) {
+async function doProcess(repositoryName, cmdPath, rev) {
     const context = getContextFromLocalStorage();
 
     try {
@@ -276,8 +276,8 @@ async function process(repositoryName, cmdPath, rev) {
 (async () => {
     const argv = process.argv && minimist(process.argv.slice(2));
 
-    if (argv && argv._ && argv._[0]) {
-        const rev = argv._[0];
+    if (argv && argv.r) {
+        const rev = argv.r;
 
         const cmdPaths = process.cwd().split("/");
 
@@ -289,16 +289,16 @@ async function process(repositoryName, cmdPath, rev) {
             const cmdPath = cmdPaths.slice(0, cmdPaths.length - 1).join("/");
 
             try {
-                await process(repositoryName, cmdPath, rev);
+                await doProcess(repositoryName, cmdPath, rev);
             }
             catch (error) {
                 // retry 1 times
-                await process(repositoryName, cmdPath, rev);
+                await doProcess(repositoryName, cmdPath, rev);
             }
         }
     }
     else {
-        throw new Error("Missing parameters: repo and rev");
+        throw new Error("Missing parameters: rev");
     }
 })()
     .then(result => {
