@@ -5,7 +5,7 @@
 
 ### 效果展示:
 
-![commit关联Worktile工作项.png](https://s1.ax1x.com/2020/04/16/JAQUzt.png)
+![commit关联Worktile工作项.png](https://s1.ax1x.com/2020/04/28/J42Mxx.png)
 
 ### 配置svn的服务端
 #### 1. 在服务器中安装`nodejs`环境
