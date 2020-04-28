@@ -21,7 +21,7 @@ cd svn-commit-sync-to-worktile
 npm install
 ```
 #### 3. 配置ClientId和ClientSecret
-1）进入Worktile研发版的`企业后台管理`页面，进入`应用管理`。
+1）进入Worktile研发版的`企业后台管理` > `应用管理` > `自定义应用`。
 2）新建应用，输入`应用名`，将`DevOps：开发`的权限设置为`读写`，点击确定。
 3）在应用列表中找到创建的应用，分别复制`ClientID`和`Secret`。
 4）回到服务器
