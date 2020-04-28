@@ -212,7 +212,7 @@ function getChangedFiles(str) {
     return files;
 }
 function fetchCommitFromLocal(context, repositoryName, cmdPath, rev) {
-    const sha = rev + repeatstring("a", 10 - rev.toString().length) + randomstring.generate({ length: 30, charset: "hex" });
+    const sha = rev + repeatstring(" ", 10 - rev.toString().length) + randomstring.generate({ length: 30, charset: "hex" });
     const message = cp.execSync(`svnlook log ${cmdPath} -r ${rev}`).toString().trim();
     const identifiers = getIdentifierFromMessage(message || "");
     const author = cp.execSync(`svnlook author ${cmdPath} -r ${rev}`).toString().trim();
