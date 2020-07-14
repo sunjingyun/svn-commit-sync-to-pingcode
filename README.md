@@ -43,6 +43,7 @@ vim /opt/worktile/svn-commit-sync-to-worktile/package.json
 cd /opt/svn/my-repo/hooks
 sudo mv post-commit.tmpl post-commit
 sudo vim post-commit
+sudo chmod +x post-commit
 ```
 清空文件，拷贝下列命令到文件中（如果之前配置过，只需要拷贝最后一行到文件中即可）
 ```
