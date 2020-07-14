@@ -49,6 +49,8 @@ sudo chmod +x post-commit
 ```
 #!/bin/sh
 
+export LANG=C.UTF-8
+
 REPOS="$1"
 REV="$2"
 TXN_NAME="$3"
