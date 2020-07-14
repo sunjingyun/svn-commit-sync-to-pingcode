@@ -49,7 +49,7 @@ sudo chmod +x post-commit
 ```
 #!/bin/sh
 
-export LANG=C.UTF-8
+export LANG=zh_CN.UTF-8
 
 REPOS="$1"
 REV="$2"
