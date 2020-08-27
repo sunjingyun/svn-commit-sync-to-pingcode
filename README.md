@@ -43,10 +43,13 @@ vim /opt/pingcode/svn-commit-sync-to-pingcode/package.json
 cd /opt/svn/my-repo/hooks
 sudo mv post-commit.tmpl post-commit
 sudo vim post-commit
+sudo chmod +x post-commit
 ```
 清空文件，拷贝下列命令到文件中（如果之前配置过，只需要拷贝最后一行到文件中即可）
 ```
 #!/bin/sh
+
+export LANG=zh_CN.UTF-8
 
 REPOS="$1"
 REV="$2"
