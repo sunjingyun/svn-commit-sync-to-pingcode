@@ -5,7 +5,7 @@
 
 ### 效果展示:
 
-![commit关联Worktile工作项.png](https://s1.ax1x.com/2020/04/28/J42Mxx.png)
+![commit关联PingCode工作项.png](https://s1.ax1x.com/2020/04/28/J42Mxx.png)
 
 ### 配置svn的服务端
 #### 1. 在服务器中安装`nodejs`环境
@@ -14,30 +14,30 @@
 
 #### 2. 在服务器下载并安装当前项目
 ```
-mkdir -p /opt/worktile
-cd /opt/worktile
-git clone git@github.com:sunjingyun/svn-commit-sync-to-worktile.git
-cd svn-commit-sync-to-worktile
+mkdir -p /opt/pingcode
+cd /opt/pingcode
+git clone git@github.com:sunjingyun/svn-commit-sync-to-pingcode.git
+cd svn-commit-sync-to-pingcode
 npm install
 ```
 #### 3. 配置ClientId和ClientSecret
-1）进入Worktile研发版的`企业后台管理` > `应用管理` > `自定义应用`。
+1）进入PingCode的`企业后台管理` > `应用管理` > `自定义应用`。
 2）新建应用，输入`应用名`，将`DevOps：开发`的权限设置为`读写`，点击确定。
 3）在应用列表中找到创建的应用，分别复制`ClientID`和`Secret`。
 4）回到服务器
 ```
-vim /opt/worktile/svn-commit-sync-to-worktile/package.json
+vim /opt/pingcode/svn-commit-sync-to-pingcode/package.json
 ```
 更新下列配置项中的`client_id`和`client_secret`：
 ```
 "config": {
-    "base_url": "https://open.worktile.com",
+    "base_url": "https://open.pingcode.com",
     "client_id": "your-client-id",
     "client_secret": "your-client-secret",
     "product_name": "Subversion"
 }
 ```
-#### 4. 配置svn的hooks，将svn的提交信息同步到Worktile中
+#### 4. 配置svn的hooks，将svn的提交信息同步到PingCode中
 我们假如svn某个repository的路径是`/opt/svn/my-repo`。
 ```
 cd /opt/svn/my-repo/hooks
@@ -52,15 +52,15 @@ REPOS="$1"
 REV="$2"
 TXN_NAME="$3"
 
-node /opt/worktile/svn-commit-sync-to-worktile -r $2 -p $(cd "$(dirname "$0")" && pwd)
+node /opt/pingcode/svn-commit-sync-to-pingcode -r $2 -p $(cd "$(dirname "$0")" && pwd)
 ```
 
 ### 客户端提交代码
-向代码仓库提交代码，commit message中提及Worktile的工作项即可，例如：
+向代码仓库提交代码，commit message中提及PingCode的工作项即可，例如：
 ```
 svn commit -m 'feat(scope): #CD-7 some comment'
 ```
-这里的`CD-7`是Worktile工作项（史诗、特性、用户故事、任务、缺陷）的编号，在Worktile中点开某一个工作项即可在左上角找到工作项编号。
+这里的`CD-7`是PingCode工作项（史诗、特性、用户故事、任务、缺陷）的编号，在PingCode中点开某一个工作项即可在左上角找到工作项编号。
 
 
 

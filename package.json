@@ -17,7 +17,7 @@
     "request": "^2.88.2"
   },
   "config": {
-    "base_url": "https://open.worktile.com",
+    "base_url": "https://open.pingcode.com",
     "client_id": "your-client-id",
     "client_secret": "your-client-secret",
     "product_name": "Subversion"

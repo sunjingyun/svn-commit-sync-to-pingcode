@@ -250,7 +250,7 @@ async function getUserId(context, userName) {
         return user.id
     }
 }
-async function sendCommitToWorktile(context, repositoryName, localCommit) {
+async function sendCommitToPingCode(context, repositoryName, localCommit) {
     const repositoryId = context.repositories[repositoryName];
     const branchId = context.branches[repositoryName];
 
@@ -289,7 +289,7 @@ async function doProcess(repositoryName, cmdPath, rev) {
 
     commit = fetchCommitFromLocal(context, repositoryName, cmdPath, rev);
     const userId = await getUserId(context, commit.committer_name);
-    await sendCommitToWorktile(context, repositoryName, commit);
+    await sendCommitToPingCode(context, repositoryName, commit);
 }
 
 (async () => {
