@@ -21,8 +21,8 @@ cd svn-commit-sync-to-pingcode
 npm install
 ```
 #### 3. 配置ClientId和ClientSecret
-1）进入PingCode的`企业后台管理` > `应用管理` > `自定义应用`。
-2）新建应用，输入`应用名`，将`DevOps：开发`的权限设置为`读写`，点击确定。
+1）进入PingCode的`企业后台管理` > `凭据管理`。
+2）新建应用，输入`应用名`，将`开发`的权限设置为`读写`，点击确定。
 3）在应用列表中找到创建的应用，分别复制`ClientID`和`Secret`。
 4）回到服务器
 ```
