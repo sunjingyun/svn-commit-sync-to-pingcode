@@ -11,7 +11,7 @@
   "dependencies": {
     "lodash": "^4.17.15",
     "minimist": "^1.2.5",
-    "moment": "^2.24.0",
+    "moment": "^2.29.4",
     "randomstring": "^1.1.5",
     "repeat-string": "^1.6.1",
     "request": "^2.88.2"
