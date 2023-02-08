@@ -298,7 +298,7 @@ async function doProcess(repositoryName, cmdPath, rev) {
     if (argv && argv.r && argv.p) {
         const rev = argv.r;
 
-        const cmdPaths = argv.p.split("/");
+        const cmdPaths = argv.p.split(path.sep);
 
         if (cmdPaths[cmdPaths.length - 1] !== "hooks" || cmdPaths.length < 2) {
             throw new Error("Please set the path of hooks folder");
